@@ -24,12 +24,11 @@ BranchGen uses a configuration file named `branchgen-config.json` to customize i
 {
   "prefixes": ["feature", "bugfix", "hotfix"],
   "separator": "/",
-  "maxBranchNameLength": 50,
+  "maxBranchNameLength": 15,
   "ticketPattern": "^[A-Z]+-[0-9]+$",
   "defaultSourceBranch": "main",
   "branchNameSeparator": "-",
   "useAutomatedVersioning": true,
-  "checkIfBranchExists": true,
   "requireTicket": false,
   "requireBranchName": true
 }
@@ -44,7 +43,6 @@ BranchGen uses a configuration file named `branchgen-config.json` to customize i
 - **defaultSourceBranch**: Default branch to check out before creating a new branch.
 - **branchNameSeparator**: Character used to replace spaces in branch names.
 - **useAutomatedVersioning**: Enables/disables automated numbering for duplicate branch names.
-- **checkIfBranchExists**: Enables/disables branch existence check.
 - **requireTicket**: Enforces ticket ID input.
 - **requireBranchName**: Enforces branch name input.
 
