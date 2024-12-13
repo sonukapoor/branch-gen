@@ -1,101 +1,80 @@
 # BranchGen
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+BranchGen is a command-line tool designed to simplify the process of creating git branches with standardized naming conventions. This tool is highly configurable, ensuring it meets the diverse requirements of teams and workflows.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Key Features
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- **Customizable Branch Naming**: Supports prefixes like `feature`, `bugfix`, `hotfix` for branch types.
+- **Automated Versioning**: Automatically appends version numbers to branch names to avoid conflicts (configurable).
+- **Validation for Naming Standards**: Ensures branch names and ticket IDs conform to specified patterns.
+- **Retry Logic**: Prompts users to retry if the branch already exists (if automated versioning is disabled).
+- **Remote Branch Integration**: Ensures compatibility with existing remote branches.
 
-## Run tasks
+## Installation
 
-To run the dev server for your app, use:
+Coming soon...
 
-```sh
-npx nx serve branch-gen
+## Configuration
+
+BranchGen uses a configuration file named `branchgen-config.json` to customize its behavior. If the file is not found, default settings are applied.
+
+### Default Configuration
+
+```json
+{
+  "prefixes": ["feature", "bugfix", "hotfix"],
+  "separator": "/",
+  "maxBranchNameLength": 50,
+  "ticketPattern": "^[A-Z]+-[0-9]+$",
+  "defaultSourceBranch": "main",
+  "branchNameSeparator": "-",
+  "useAutomatedVersioning": true,
+  "checkIfBranchExists": true,
+  "requireTicket": false,
+  "requireBranchName": true
+}
 ```
 
-To create a production bundle:
+### Options Explained
 
-```sh
-npx nx build branch-gen
-```
+- **prefixes**: List of branch types available for selection (e.g., `feature`, `bugfix`).
+- **separator**: Character used to separate the branch type from the rest of the branch name.
+- **maxBranchNameLength**: Maximum length allowed for a branch name.
+- **ticketPattern**: Regex pattern for validating ticket IDs (e.g., `PROJ-123`).
+- **defaultSourceBranch**: Default branch to check out before creating a new branch.
+- **branchNameSeparator**: Character used to replace spaces in branch names.
+- **useAutomatedVersioning**: Enables/disables automated numbering for duplicate branch names.
+- **checkIfBranchExists**: Enables/disables branch existence check.
+- **requireTicket**: Enforces ticket ID input.
+- **requireBranchName**: Enforces branch name input.
 
-To see all available targets to run for a project, run:
+## Usage
 
-```sh
-npx nx show project branch-gen
-```
+Run the script and follow the prompts to generate a branch name and create the branch.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Example Workflow
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+1. Select a branch type (e.g., `feature`).
+2. Enter a ticket ID if required (e.g., `PROJ-123`).
+3. Provide a branch name (e.g., `add new feature`).
+4. Choose a source branch from the list of remote branches.
+5. BranchGen checks out the source branch, pulls the latest changes, and creates the new branch.
 
-## Add new projects
+### Handling Duplicate Branch Names
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+- If `useAutomatedVersioning` is enabled, BranchGen appends version numbers (e.g., `feature/PROJ-123-add-new-feature-1`).
+- If `useAutomatedVersioning` is disabled, you are prompted to retry with a different branch name.
 
-Use the plugin's generator to create new projects.
+## Error Handling
 
-To generate a new application, use:
+- **No Remote Branches Found**: If no remote branches exist, the script exits with an error.
+- **Invalid Ticket ID**: If the ticket ID does not match the specified pattern, the script prompts for a valid ID.
+- **Branch Name Too Long**: If the branch name exceeds the maximum allowed length, you are prompted to retry.
 
-```sh
-npx nx g @nx/node:app demo
-```
+## Contributing
 
-To generate a new library, use:
+Contributions are welcome! Feel free to submit issues or pull requests.
 
-```sh
-npx nx g @nx/node:lib mylib
-```
+## License
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This project is licensed under the MIT License. See the LICENSE file for details.
