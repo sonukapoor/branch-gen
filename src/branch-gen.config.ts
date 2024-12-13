@@ -6,7 +6,6 @@ export interface BranchGenConfig {
   defaultSourceBranch: string;
   branchNameSeparator: string;
   useAutomatedVersioning: boolean;
-  checkIfBranchExists: boolean;
   requireTicket: boolean;
   requireBranchName: boolean;
 }

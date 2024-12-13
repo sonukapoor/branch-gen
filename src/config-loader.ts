@@ -6,12 +6,11 @@ export class ConfigLoader {
   private static readonly defaultConfig: BranchGenConfig = {
     prefixes: ['feature', 'bugfix', 'hotfix'],
     separator: '/',
-    maxBranchNameLength: 50,
+    maxBranchNameLength: 15,
     ticketPattern: '^[A-Z]+-[0-9]+$',
     defaultSourceBranch: 'main',
     branchNameSeparator: '-',
     useAutomatedVersioning: true,
-    checkIfBranchExists: true,
     requireTicket: false,
     requireBranchName: true,
   };
