@@ -1,0 +1,11 @@
+{
+  "prefixes": ["feature", "bugfix", "hotfix"],
+  "separator": "/",
+  "maxBranchNameLength": 20,
+  "ticketPattern": "^[A-Z]+-[0-9]+$",
+  "defaultSourceBranch": "main",
+  "branchNameSeparator": "-",
+  "useAutomatedVersioning": false,
+  "requireTicket": false,
+  "requireBranchName": true
+}

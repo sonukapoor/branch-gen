@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@inquirer/prompts": "^7.2.0",
     "axios": "^1.6.0"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "jest-environment-node": "^29.7.0",
     "nx": "20.2.2",
     "prettier": "^2.6.2",
+    "simple-git": "^3.27.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
