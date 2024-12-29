@@ -71,10 +71,36 @@ export class BranchGenApp {
         return;
       }
 
-      const sourceBranch: string = await select({
-        message: 'Select the source branch:',
-        choices: branches,
-      });
+      let filteredBranches = branches;
+      let sourceBranch: string | undefined;
+
+      while (!sourceBranch) {
+        const searchTerm = await input({
+          message:
+            'Type to filter the source branch list (leave blank to see all):',
+        });
+
+        filteredBranches = branches.filter((branch) =>
+          branch.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        if (filteredBranches.length === 0) {
+          console.error('No branches match your search. Try again.');
+          continue;
+        }
+
+        filteredBranches.unshift('Select this option to filter again');
+
+        sourceBranch = await select({
+          message: 'Select the source branch:',
+          choices: filteredBranches,
+        });
+
+        if (sourceBranch === 'Select this option to filter again') {
+          sourceBranch = undefined;
+          continue;
+        }
+      }
 
       console.log(`Checking out source branch: ${sourceBranch}`);
       await this.gitHelper.checkoutBranch(sourceBranch);
