@@ -1,16 +1,20 @@
 {
-  "name": "@branch-gen/source",
-  "version": "0.0.0",
+  "name": "branch-gen",
+  "version": "1.0.0-alpha.2",
   "license": "MIT",
+  "bin": {
+    "branch-gen": "./dist/bin/branch-gen.js"
+  },
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "postbuild": "cpx src/bin/**/* dist/bin"
   },
-  "private": true,
   "dependencies": {
     "@inquirer/prompts": "^7.2.0",
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "simple-git": "^3.27.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -26,6 +30,7 @@
     "@swc/helpers": "~0.5.11",
     "@types/jest": "^29.5.12",
     "@types/node": "~18.16.9",
+    "cpx": "^1.5.0",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.0.0",
@@ -33,14 +38,18 @@
     "jest-environment-node": "^29.7.0",
     "nx": "20.2.2",
     "prettier": "^2.6.2",
-    "simple-git": "^3.27.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.6.2",
-    "typescript-eslint": "^8.13.0"
+    "typescript-eslint": "^8.13.0",
+    "verdaccio": "^5.0.4"
   },
   "nx": {
     "includedScripts": []
-  }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ]
 }

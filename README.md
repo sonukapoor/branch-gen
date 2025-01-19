@@ -2,6 +2,8 @@
 
 BranchGen is a command-line tool designed to simplify the process of creating git branches with standardized naming conventions. This tool is highly configurable, ensuring it meets the diverse requirements of teams and workflows.
 
+---
+
 ## Key Features
 
 - **Customizable Branch Naming**: Supports prefixes like `feature`, `bugfix`, `hotfix` for branch types.
@@ -10,9 +12,38 @@ BranchGen is a command-line tool designed to simplify the process of creating gi
 - **Retry Logic**: Prompts users to retry if the branch already exists (if automated versioning is disabled).
 - **Remote Branch Integration**: Ensures compatibility with existing remote branches.
 
+---
+
 ## Installation
 
-Coming soon...
+```bash
+npm install -g branch-gen
+```
+
+---
+
+## Why Use BranchGen?
+
+Manually creating branches often leads to inconsistent naming, which can confuse teams and complicate workflows. For example:
+
+**Problem Case:**
+
+- Developers on your team create branches with inconsistent names like:
+  - `feature-add_login`
+  - `bugfix/login_bug`
+  - `hotfix/criticalFix`
+
+These variations cause confusion and make it difficult to search, manage, and enforce naming conventions across the repository.
+
+**How BranchGen Helps:**
+
+- By using **BranchGen**, you can:
+  - Standardize branch names (e.g., `feature/PROJ-123-add-login`).
+  - Ensure ticket IDs follow a specific pattern (e.g., `PROJ-123`).
+  - Automatically append version numbers to avoid branch conflicts.
+  - Simplify workflows by reducing human error and maintaining consistency.
+
+---
 
 ## Configuration
 
@@ -46,7 +77,13 @@ BranchGen uses a configuration file named `branchgen-config.json` to customize i
 - **requireTicket**: Enforces ticket ID input.
 - **requireBranchName**: Enforces branch name input.
 
+---
+
 ## Usage
+
+```bash
+npx branch-gen
+```
 
 Run the script and follow the prompts to generate a branch name and create the branch.
 
@@ -58,10 +95,14 @@ Run the script and follow the prompts to generate a branch name and create the b
 4. Choose a source branch from the list of remote branches.
 5. BranchGen checks out the source branch, pulls the latest changes, and creates the new branch.
 
+---
+
 ### Handling Duplicate Branch Names
 
 - If `useAutomatedVersioning` is enabled, BranchGen appends version numbers (e.g., `feature/PROJ-123-add-new-feature-1`).
 - If `useAutomatedVersioning` is disabled, you are prompted to retry with a different branch name.
+
+---
 
 ## Error Handling
 
@@ -69,9 +110,13 @@ Run the script and follow the prompts to generate a branch name and create the b
 - **Invalid Ticket ID**: If the ticket ID does not match the specified pattern, the script prompts for a valid ID.
 - **Branch Name Too Long**: If the branch name exceeds the maximum allowed length, you are prompted to retry.
 
+---
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests.
+
+---
 
 ## License
 
