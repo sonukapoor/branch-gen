@@ -12,12 +12,12 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/branch-gen",
+        "outputPath": "dist",
         "format": ["cjs"],
         "bundle": false,
         "main": "src/main.ts",
         "tsConfig": "tsconfig.app.json",
-        "assets": ["src/assets"],
+        "assets": ["src/assets", "src/bin"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -53,6 +53,14 @@
         "production": {
           "buildTarget": "branch-gen:build:production"
         }
+      }
+    },
+    "local-registry": {
+      "executor": "@nx/js:verdaccio",
+      "options": {
+        "port": 4873,
+        "config": ".verdaccio/config.yml",
+        "storage": "tmp/local-registry/storage"
       }
     }
   }

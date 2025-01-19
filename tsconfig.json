@@ -13,7 +13,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@sonukapoor/branch-gen": ["libs/core/src/index.ts"]
+    },
     "esModuleInterop": true
   },
   "files": [],
