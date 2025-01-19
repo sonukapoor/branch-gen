@@ -2,6 +2,8 @@
 
 BranchGen is a command-line tool designed to simplify the process of creating git branches with standardized naming conventions. This tool is highly configurable, ensuring it meets the diverse requirements of teams and workflows.
 
+⭐ If you find this tool helpful, please consider giving it a star on GitHub! Your support means a lot.
+
 ---
 
 ## Key Features
