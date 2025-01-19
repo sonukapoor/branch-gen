@@ -1,6 +1,6 @@
 {
   "name": "branch-gen",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0",
   "license": "MIT",
   "bin": {
     "branch-gen": "./dist/bin/branch-gen.js"
